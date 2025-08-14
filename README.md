@@ -1,4 +1,4 @@
-istema Food Truck
+Sistema Food Truck
 
 Sistema de gestão para Food Trucks, desenvolvido em Java 21 com Spring Boot no backend e PostgreSQL como banco de dados.
 
