@@ -1,18 +1,18 @@
 package com.example.demo.model;
 
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Data
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "produtos")
+@Table(name = "produto")
 public class Produto {
 
     @Id
@@ -31,6 +31,6 @@ public class Produto {
     @Column(nullable = false)
     private boolean disponivel;
 
-
-
+    @OneToMany(mappedBy = "produto")
+    private List<PedidoItem> itens;
 }
