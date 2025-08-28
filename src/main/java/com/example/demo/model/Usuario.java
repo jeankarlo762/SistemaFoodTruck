@@ -1,26 +1,28 @@
-package com.example.demo.model;
+    package com.example.demo.model;
 
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+    import jakarta.persistence.*;
+    import lombok.AllArgsConstructor;
+    import lombok.Data;
+    import lombok.NoArgsConstructor;
 
-import java.util.List;
+    import java.util.List;
 
-@Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Table(name = "usuario")
-public class Usuario {
+    @Entity
+    @Table(name = "usuario")
+    @Inheritance(strategy = InheritanceType.JOINED)  // define herança
+    @DiscriminatorColumn(name = "tipo_usuario")     // coluna que identifica o tipo
+    @Data
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public class Usuario {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private Long id;
 
-    @Column(name = "nome", nullable = false)
-    private String nome;
+        @Column(name = "nome", nullable = false)
+        private String nome;
 
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Pedido> pedidos;
-}
+        @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+        private List<Pedido> pedidos;
+    }

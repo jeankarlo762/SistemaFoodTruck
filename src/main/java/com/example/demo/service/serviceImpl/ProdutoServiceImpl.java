@@ -31,7 +31,7 @@ public class ProdutoServiceImpl implements ProdutoService {
     @Override
     @Transactional(readOnly = true)
     public Produto buscaPorNome(String nome) {
-        return produtoRepository.buscarPorNome(nome)
+        return produtoRepository.findByNome(nome)
                 .orElseThrow(() -> new RecursoNaoEncontradoException("Produto com nome '" + nome + "' não encontrado."));
     }
 
