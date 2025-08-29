@@ -35,10 +35,10 @@ public class ProdutoServiceImpl implements ProdutoService {
                 .orElseThrow(() -> new RecursoNaoEncontradoException("Produto com nome '" + nome + "' não encontrado."));
     }
 
-    @Override
+
     @Transactional(readOnly = true)
     public Produto buscaPorId(int id) {
-        return produtoRepository.findById((long) id)
+        return produtoRepository.findById(id)
                 .orElseThrow(() -> new RecursoNaoEncontradoException("Produto com ID " + id + " não encontrado."));
     }
 
@@ -58,7 +58,7 @@ public class ProdutoServiceImpl implements ProdutoService {
             throw new ValidacaoException("Produto ou ID do produto não pode ser nulo para a remoção.");
         }
 
-        if (!produtoRepository.existsById(produto.getId())) {
+        if (!produtoRepository.existsProdutoById(produto.getId())){
             throw new RecursoNaoEncontradoException("Produto com ID " + produto.getId() + " não encontrado.");
         }
         produtoRepository.delete(produto);

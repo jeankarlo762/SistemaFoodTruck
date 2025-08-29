@@ -26,7 +26,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Transactional(readOnly = true)
-    public Usuario buscarPorId(Long id) {
+    public Usuario buscarPorId(Integer id) {
         return usuarioRepository.findById(id)
                 .orElseThrow(() -> new RecursoNaoEncontradoException("Usuário com ID " + id + " não encontrado."));
     }

@@ -18,7 +18,7 @@
 
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private Long id;
+        private Integer id;
 
         @Column(name = "nome", nullable = false)
         private String nome;

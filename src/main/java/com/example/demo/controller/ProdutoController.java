@@ -38,7 +38,7 @@ public class ProdutoController {
         return ResponseEntity.ok(produto);
     }
 
-    @PostMapping("Cadastro")
+    @PostMapping("/Cadastro")
     public ResponseEntity<Produto> cadastrar(@RequestBody Produto produto) {
         Produto novoProduto = produtoService.cadastrar(produto);
         return new ResponseEntity<>(novoProduto, HttpStatus.CREATED);
@@ -46,7 +46,7 @@ public class ProdutoController {
 
     @PutMapping("/AtualizarById/{id}")
     public ResponseEntity<Produto> atualizar(@PathVariable int id, @RequestBody Produto produtoAtualizado) {
-        produtoAtualizado.setId((long) id);
+        produtoAtualizado.setId(id);
         Produto produto = produtoService.atualizar(produtoAtualizado);
         return ResponseEntity.ok(produto);
     }

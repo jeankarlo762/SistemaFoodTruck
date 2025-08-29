@@ -11,8 +11,8 @@ public interface UsuarioRepository extends CrudRepository<Usuario,Integer> {
 
     Optional<Usuario> findByNome(String nome);
 
-    Optional<Usuario>findById(Long id);
+    Optional<Usuario>findById(Integer id);
 
-    boolean existsUsuarioById(Long id);
+    boolean existsUsuarioById(Integer id);
 
 }
