@@ -1,38 +1,41 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
 
-@NoArgsConstructor
 @Entity
-@
+@Table(name = "usuario")
+@Inheritance(strategy = InheritanceType.JOINED)  // herança se houver subclasses
+@DiscriminatorColumn(name = "tipo_usuario")     // coluna que identifica o tipo
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 public class Usuario {
 
     @Id
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
+    @Column(name = "nome_usuario")
     private String nomeUsuario;
 
+    @Column(nullable = false)
+    private String nome;
+
+    @Column(nullable = false, unique = true)
     private String email;
 
-    @ManyToOne
-    @JoinColumn(name = "pedido_id")
-    private Pedido pedido;
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Pedido> pedidos;  // um usuário pode ter vários pedidos
 
-    public Pedido getPedido() {
-        return pedido;
-    }
-
-    public void setPedido(Pedido pedido) {
-        this.pedido = pedido;
-    }
-
-    public Usuario(Long id, String nomeUsuario, String email) {
+    // Construtor adicional
+    public Usuario(Integer id, String nomeUsuario, String email) {
         this.id = id;
         this.nomeUsuario = nomeUsuario;
+        this.email = email;
     }
-
-
-
 }
